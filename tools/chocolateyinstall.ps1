@@ -1,4 +1,5 @@
-﻿# stop on all errors
+﻿##dont forget the icon!
+
 $ErrorActionPreference = 'Stop';
 
 
