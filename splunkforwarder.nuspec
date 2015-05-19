@@ -4,14 +4,16 @@
   <metadata>
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>splunkforwarder</id>
-    <title>splunkforwarder (Install)</title>
-    <version>__REPLACE__</version>
-    <authors>__REPLACE_AUTHORS_OF_SOFTWARE__</authors>
-    <owners>__REPLACE_YOUR_NAME__</owners>
-    <summary>__REPLACE__</summary>
-    <description>__REPLACE__ 
+    <title>Splunk Universal Forwarder</title>
+    <version>6.2.3</version>
+    <authors>Splunk, Inc</authors>
+    <owners>Robert Labrie</owners>
+    <summary>Splunk Universal Forwarder</summary>
+    <description>The Splunk Universal Forwarder is a component of Splunk to collect data on machine and forward it to an indexer.
+	
+	
     </description>
-    <projectUrl></projectUrl>
+    <projectUrl>http://www.splunk.com</projectUrl>
     <tags>splunkforwarder admin</tags>
     <copyright></copyright>
     <licenseUrl></licenseUrl>
