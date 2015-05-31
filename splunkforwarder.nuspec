@@ -11,8 +11,10 @@
     <summary>Splunk Universal Forwarder</summary>
     <description>The Splunk Universal Forwarder is a component of Splunk to collect data on machine and forward it to an indexer.
 	
-	It's a good idea to specify either a RECEIVING_INDEXER or DEPLOYMENT_SERVER
+	It's a good idea to specify either a RECEIVING_INDEXER or DEPLOYMENT_SERVER. You might do something like:
+	choco install splunkforwarder --params="RECEIVING_INDEXER=somehost:9997"
 	
+	Details about all the parameters are at the Splunk docs:	
 	http://docs.splunk.com/Documentation/Splunk/6.2.3/Forwarding/DeployaWindowsdfviathecommandline
     </description>
     <projectUrl>http://www.splunk.com</projectUrl>
