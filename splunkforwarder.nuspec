@@ -11,7 +11,9 @@
     <summary>Splunk Universal Forwarder</summary>
     <description>The Splunk Universal Forwarder is a component of Splunk to collect data on machine and forward it to an indexer.
 	
+	It's a good idea to specify either a RECEIVING_INDEXER or DEPLOYMENT_SERVER
 	
+	http://docs.splunk.com/Documentation/Splunk/6.2.3/Forwarding/DeployaWindowsdfviathecommandline
     </description>
     <projectUrl>http://www.splunk.com</projectUrl>
     <tags>splunkforwarder admin</tags>
