@@ -16,6 +16,8 @@
 	
 	Details about all the parameters are at the Splunk docs:	
 	http://docs.splunk.com/Documentation/Splunk/6.2.3/Forwarding/DeployaWindowsdfviathecommandline
+	
+	The GitHub home for this package is: https://github.com/tnwinc/chocolatey-splunkforwarder
     </description>
     <projectUrl>http://www.splunk.com</projectUrl>
     <tags>splunkforwarder admin</tags>
