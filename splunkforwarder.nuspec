@@ -24,7 +24,7 @@
     <copyright>Splunk, Inc</copyright>
     <licenseUrl>http://www.splunk.com/en_us/legal/splunk-software-license-agreement.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <<iconUrl>https://cdn.rawgit.com/tnwinc/chocolatey-splunkforwarder/master/splunkforwarder.png</iconUrl>
+    <iconUrl>https://cdn.rawgit.com/tnwinc/chocolatey-splunkforwarder/master/splunkforwarder.png</iconUrl>
     <!--<dependencies>
       <dependency id="" version="__VERSION__" />
       <dependency id="" />
