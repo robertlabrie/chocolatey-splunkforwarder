@@ -1,8 +1,24 @@
-﻿$ErrorActionPreference = 'Stop';
+﻿function Get-UninstallHash
+{
+    Param($package)
 
+    $regPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+    Get-ChildItem -Path $regPath | ForEach-Object { if ((Get-ItemProperty "$regPath\$($_.PSChildName)").DisplayName -eq $package) { return $_.PSChildName } }
+
+    if (Test-Path "HKLM:\SOFTWARE\Wow6432Node\") {
+        $regPath = "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
+        Get-ChildItem -Path $regPath | ForEach-Object { if ((Get-ItemProperty "$regPath\$($_.PSChildName)").DisplayName -eq $package) { return $_.PSChildName } }
+    }
+    #return $false
+}
+
+$ErrorActionPreference = 'Stop';
+
+$hash = (Get-UninstallHash -package "UniversalForwarder")
+Write-Output "uninstalling hash: |$hash|"
 
 $packageName = 'splunkforwarder'
-$registryUninstallerKeyName = '{ADCAD08D-92F7-42BB-956E-D558F8FFBF14}' #ensure this is the value in the registry
+$registryUninstallerKeyName = $hash #ensure this is the value in the registry
 $installerType = 'MSI'
 $silentArgs = "$registryUninstallerKeyname /quiet"
 $validExitCodes = @(0)

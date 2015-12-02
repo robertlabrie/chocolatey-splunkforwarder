@@ -1,4 +1,16 @@
-﻿##dont forget the icon!
+﻿function Get-UninstallHash
+{
+    Param($package)
+
+    $regPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"
+    Get-ChildItem -Path $regPath | ForEach-Object { if ((Get-ItemProperty "$regPath\$($_.PSChildName)").DisplayName -eq $package) { return $_.PSChildName } }
+
+    if (Test-Path "HKLM:\SOFTWARE\Wow6432Node\") {
+        $regPath = "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
+        Get-ChildItem -Path $regPath | ForEach-Object { if ((Get-ItemProperty "$regPath\$($_.PSChildName)").DisplayName -eq $package) { return $_.PSChildName } }
+    }
+    return $false
+}
 
 $ErrorActionPreference = 'Stop';
 
@@ -6,8 +18,8 @@ $ErrorActionPreference = 'Stop';
 $packageName = 'splunkforwarder'
 $registryUninstallerKeyName = 'splunkforwarder' #ensure this is the value in the registry
 $installerType = 'MSI'
-$url = 'http://download.splunk.com/products/splunk/releases/6.2.5/universalforwarder/windows/splunkforwarder-6.2.5-272645-x86-release.msi'
-$url64 = 'http://download.splunk.com/products/splunk/releases/6.2.5/universalforwarder/windows/splunkforwarder-6.2.5-272645-x64-release.msi'
+$url = 'http://download.splunk.com/products/splunk/releases/6.3.1/universalforwarder/windows/splunkforwarder-6.3.1-f3e41e4b37b2-x86-release.msi'
+$url64 = 'http://download.splunk.com/products/splunk/releases/6.3.1/universalforwarder/windows/splunkforwarder-6.3.1-f3e41e4b37b2-x64-release.msi'
 $silentArgs = '/quiet' # "/s /S /q /Q /quiet /silent /SILENT /VERYSILENT" # try any of these to get the silent installer #msi is always /quiet
 $validExitCodes = @(0)
 $toolsDir = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
@@ -20,6 +32,8 @@ if (!($packageParameters -like "*RECEIVING_INDEXER*") -and !($packageParameters 
 	Write-Warning "Did not specify RECEIVING_INDEXER or DEPLOYMENT_SERVER. It's a good idea to set one of these. Refer to the documentation"
 }
 Write-Output "Installing with  $packageParameters AGREETOLICENSE=Yes $silentArgs"
+
+if (Get-UninstallHash -package "UniversalForwarder") { & "$toolsDir\chocolateyUninstall.ps1" }
 
 Install-ChocolateyPackage "$packageName" "$installerType" "$packageParameters AGREETOLICENSE=Yes $silentArgs" "$url" "$url64"
 
