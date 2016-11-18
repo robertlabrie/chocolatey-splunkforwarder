@@ -2,7 +2,9 @@
 
 
 $packageName = 'splunkforwarder'
-$registryUninstallerKeyName = '{ADCAD08D-92F7-42BB-956E-D558F8FFBF14}' #ensure this is the value in the registry
+$registryUninstallerKeyName = '{D23A0D86-94B2-4BFA-9703-4C403A602C33}' 
+# ensure this is the value in the registry or check with the following wmi command
+# get-wmiobject Win32_Product | where-object {$_.name -eq "UniversalForwarder"} | select identifyingNumber
 $installerType = 'MSI'
 $silentArgs = "$registryUninstallerKeyname /quiet"
 $validExitCodes = @(0)
